@@ -33,14 +33,15 @@ if re.search(r'(\d+)+(시간|일)\s+전', look):
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(0.5)
 
-for i in range(1,7):
-
-    if driver.find_element(By.CSS_SELECTOR, '.css-1s9fubg .more'):  # 더 보기 버튼 찾기
-        driver.find_element(By.CSS_SELECTOR, '.css-1s9fubg .more').click()  # 누르기
-        print(f'게임 로드중...{i*20+20}/100')
+for i in range(1, 7):
+    try:
+        more_button = driver.find_element(By.CSS_SELECTOR, '.css-1s9fubg .more')
+        more_button.click()
+        print('게임 로드중...')
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(5)
-    else:
+        time.sleep(2)
+    except:
+        print("더이상 찾을 데이터가 없습니다.")
         break
 # details = driver.find_elements(By.XPATH, ("//div[contains(@class,'StatsButton')]"))
 # for i in details:
@@ -100,4 +101,4 @@ print(df_result)
 
 # plt.pie(ratio, labels=labels, autopct='%.1f%%')
 # plt.show()
-file.close()
+# file.close()
