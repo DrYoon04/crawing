@@ -102,3 +102,4 @@ print(df_result)
 # plt.pie(ratio, labels=labels, autopct='%.1f%%')
 # plt.show()
 # file.close()
+# 승리기록이 없을시 오류발생
