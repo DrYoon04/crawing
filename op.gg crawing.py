@@ -21,13 +21,13 @@ driver.get(url)
 look = driver.find_element(By.CSS_SELECTOR, ".css-n9kjrp .header-profile-info .info > .last-update").text
 print(look)
 
-# if re.search(r'(시간|일)\s+전', look):
-#     driver.find_element(By.CSS_SELECTOR, ".css-1ki6o6m.e18vylim0").click()
-#     print('데이터 최신화 중...')
-#     new = tqdm(range(5),desc='5초 소요',leave=False)
-#     for i in new:
-#         time.sleep(1)
-#     new.close()
+if re.search(r'(시간|일)\s+전', look):
+    driver.find_element(By.CSS_SELECTOR, ".css-1ki6o6m.e18vylim0").click()
+    print('데이터 최신화 중...')
+    new = tqdm(range(5),desc='5초 소요',leave=False)
+    for i in new:
+        time.sleep(1)
+    new.close()
         
 
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
