@@ -21,13 +21,13 @@ driver.get(url)
 look = driver.find_element(By.CSS_SELECTOR, ".css-n9kjrp .header-profile-info .info > .last-update").text
 print(look)
 
-if re.search(r'(\d+)+(시간|일)\s+전', look):
-    driver.find_element(By.CSS_SELECTOR, ".css-1ki6o6m.e18vylim0").click()
-    print('데이터 최신화 중...')
-    new = tqdm(range(5),desc='5초 소요',leave=False)
-    for i in new:
-        time.sleep(1)
-    new.close()
+# if re.search(r'(시간|일)\s+전', look):
+#     driver.find_element(By.CSS_SELECTOR, ".css-1ki6o6m.e18vylim0").click()
+#     print('데이터 최신화 중...')
+#     new = tqdm(range(5),desc='5초 소요',leave=False)
+#     for i in new:
+#         time.sleep(1)
+#     new.close()
         
 
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -91,11 +91,15 @@ kda_values = [kdaresult.get_text() for kdaresult in result_kda]
 del kda_values[0]
 df_kda = pd.DataFrame({'k/d/a': kda_values})
 
-print(f"승리{result_num['승리']}판")
-print(f"패배{result_num['패배']}판")
-winrate = "%0.2f"%((result_num["승리"]/recent_game_len)*100)
-print(f'승률 : {winrate}%')
-print(df_result)
+try:
+    print(f"승리{result_num['승리']}판")
+    print(f"패배{result_num['패배']}판")
+    winrate = "%0.2f"%((result_num["승리"]/recent_game_len)*100)
+    print(f'승률 : {winrate}%')
+    print(df_result)
+except:
+    print(f'총게임수는{recent_game_len}입니다.')
+    print('승률은 0%입니다')
 # ratio = [result_num['승리'],result_num['패배']]
 # labels = ['승리', '패배']
 
