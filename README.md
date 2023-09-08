@@ -1,4 +1,9 @@
-[이미지](https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg)
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" width="100" height="100">
+
+<!-- ex -->
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" width="100">
+<!-- ![](https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg) -->
 [ai프로그래밍연습 과제 기록](https://dryoon.notion.site/ai-b78ae131273b4d588dc232e60fc5e5a9?pvs=4)
 <!-- # 게임 전적 사이트 크롤링
 > 파일이름 : op.gg crawing.py
