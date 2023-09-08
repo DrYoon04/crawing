@@ -1,4 +1,4 @@
-[LYNMP 홈페이지 바로가기](https://dryoon.notion.site/ai-b78ae131273b4d588dc232e60fc5e5a9?pvs=4"개발자들의 퇴근 도우미 LYNMP")
+[ai프로그래밍연습 과제 기록](https://dryoon.notion.site/ai-b78ae131273b4d588dc232e60fc5e5a9?pvs=4)
 <!-- # 게임 전적 사이트 크롤링
 > 파일이름 : op.gg crawing.py
 
