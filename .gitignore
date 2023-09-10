@@ -211,3 +211,6 @@ pyrightconfig.json
 resource/
 all.html
 crawing.ipynb
+df_result.xlsx
+df_kda.xlsx
+merged_df.xlsx
