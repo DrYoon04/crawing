@@ -8,8 +8,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-# nickname = input('op.gg 사이트에서 검색할 닉네임을 입력해주세요 : \n')
-url = f'https://www.op.gg/summoners/kr/hide on bush'
+nickname = input('op.gg 사이트에서 검색할 닉네임을 입력해주세요 : \n')
+url = f'https://www.op.gg/summoners/kr/{nickname}'
 
 # Chrome 드라이버 경로 설정
 driver = webdriver.Chrome()
@@ -17,14 +17,11 @@ driver = webdriver.Chrome()
 # op.gg 웹 사이트로 이동
 print('로딩중...')
 driver.get(url)
-try:
+look = driver.find_element(By.XPATH, '//*[@id="content-header"]/div[1]/div/div[1]/div[2]/div[5]/div').text
 
-    look = driver.find_element(By.XPATH, '//*[@id="content-header"]/div[1]/div/div[1]/div[2]/div[6]/div').text
-    print(look)
-except:
-    pass
-if re.search(r'(시간|일)\s+전', look):
-    driver.find_element(By.CSS_SELECTOR, ".css-1ki6o6m.e18vylim0").click()
+print(look)
+if re.search(r'(\d+\s*시간|\d+\s*일|하루)\s*전', look):
+    driver.find_element(By.XPATH, '//*[@id="content-header"]/div[1]/div/div[1]/div[2]/div[4]/button').click()
     print('데이터 최신화 중...')
     new = tqdm(range(5),desc='5초 소요',leave=False)
     for i in new:
@@ -44,7 +41,7 @@ for i in range(1, 7):
         time.sleep(2)
     except:
         print("더이상 찾을 데이터가 없습니다.")
-        break
+        pass
 
     
 print('완료')
@@ -55,7 +52,9 @@ html = driver.page_source
 # f.write(html)
 # f.close() 
 # print('저장완료!')
-# driver.quit()
+driver.quit()
+
+
 
 # # 파일 열기 (읽기 모드)
 # file_path = "/Users/dryoon/Documents/schoolproject/all.html"  # 파일 경로를 지정합니다.
