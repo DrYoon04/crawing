@@ -209,8 +209,8 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/macos,python
 
 all.html
-3. vectorstore/lyrics
+3vectorstore/lyrics
 open ai api key.txt
-3. vectorstore/lyrics.csv
+3vectorstore/lyrics.csv
 ./file
-3. vectorstore/DBpia_Articles_20231012/
+3vectorstore/DBpia_Articles_20231012/
