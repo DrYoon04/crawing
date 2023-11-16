@@ -6,7 +6,6 @@ from discord import ButtonStyle
 import module.food as food
 import random
 
-
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
@@ -21,9 +20,14 @@ async def on_ready():
 async def first_command(interaction):
     await interaction.response.send_message('퐁')
 
-@tree.command(name='메뉴',description='기숙사 메뉴을 알 수 있습니다',guild=guild)
+@tree.command(name='기숙사',description='기숙사 메뉴을 알 수 있습니다(푸름, 오름1, 오름3)',guild=guild)
 async def menu(interaction: discord.Integration,동이름 : str):
     embed  = discord.Embed(title = '😝오늘의 식단😝', description = food.get_menu_data(동이름),colour=0x3498DB)
+    await interaction.response.send_message(embed = embed)
+
+@tree.command(name='학생회관',description='학식 메뉴을 알 수 있습니다(분식당, 교직원식당, 학생식당)',guild=guild)
+async def menu(interaction: discord.Integration,학식 : str):
+    embed  = discord.Embed(title = '😝오늘의 식단😝', description = food.school_food(학식),colour=0x3498DB)
     await interaction.response.send_message(embed = embed)
 
 @tree.command(name='주사위',description='주사위가 조금... 이상한거 같습니다..!',guild=guild)
@@ -54,4 +58,4 @@ async def select(interaction: discord.Interaction):
     await interaction.response.send_message(content="여기는 1번content", view=Select())
 
     
-client.run('OTYyOTE0MjEwMzIzNTI1NjYy.Gawps2.3x9SltAz5FOKVZ4g3Rv9d9oQo0TpSvisTNvosY')
+client.run('OTYyOTE0MjEwMzIzNTI1NjYy.G1dBk_.WsNAszVjJCcG2wy3Ovlj36gWruOqiPuu5DxFHs')

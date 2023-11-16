@@ -14,7 +14,7 @@ def get_menu_data(user):
 
     if user == '푸름':
         webpage = requests.get("https://dorm.kumoh.ac.kr/dorm/restaurant_menu01.do#")
-    elif user== '오름1':
+    elif user == '오름1':
         webpage = requests.get("https://dorm.kumoh.ac.kr/dorm/restaurant_menu02.do#")
     elif user == '오름3':
         webpage = requests.get("https://dorm.kumoh.ac.kr/dorm/restaurant_menu03.do#")
@@ -36,7 +36,7 @@ def get_menu_data(user):
     df.index = ['중식', '석식']
     for data in df[date]:
         result.append(data.replace('\n', '\n'))
-    if 14<time<19:
+    if 14 < time < 19:
         return result[1]
     else:
         return result[0]
@@ -66,13 +66,13 @@ def school_food(user):
         df.index = ['조식', '중식']
         for data in df[date]:
             result.append(data.replace('\n', '\n'))
-        if 11<time<14:
+        if 11 < time < 14:
             return result[1]
         else:
             return result[0]
 
 
-    elif user== '교직원식당':
+    elif user == '교직원식당':
         webpage = requests.get("https://www.kumoh.ac.kr/ko/restaurant02.do")
 
         soup = BeautifulSoup(webpage.content, "html.parser")
@@ -90,7 +90,7 @@ def school_food(user):
         df.index = ['중식', '석식']
         for data in df[date]:
             result.append(data.replace('\n', '\n'))
-        if 14<time<19:
+        if 14 < time < 19:
             return result[1]
         else:
             return result[0]
@@ -116,15 +116,3 @@ def school_food(user):
             result.append(data.replace('\n', '\n'))
 
         return result[0]
-
-
-    else:
-        return 'error'
-
-list = ['푸름','오름1','오름3']
-list1 = ['학생식당','교직원식당','분식당']
-for i in list:
-    print(i,"\n",get_menu_data(i))
-
-for i in list1:
-    print(i,"\n",school_food(i))
