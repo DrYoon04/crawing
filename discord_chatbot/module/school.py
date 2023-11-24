@@ -1,9 +1,9 @@
+from datetime import datetime
+
+import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from html_table_parser import parser_functions
-import re
-import pandas as pd
-from datetime import datetime
 
 now = datetime.now()
 date = now.strftime("%Y")
@@ -54,3 +54,4 @@ title = title[count:]
 #link 열 추가 후 title리스트에 있는 href값 넣기
 df['link'] = title
 
+df.to_csv("/Users/dryoon04/Documents/GitHub/university-project/discord_chatbot/data/notice.csv")

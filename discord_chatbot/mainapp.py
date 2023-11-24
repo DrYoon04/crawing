@@ -1,14 +1,32 @@
-import discord
-from discord import app_commands,Integration,Object
-from discord.ext import commands
-from discord.ui import Button, View
-from discord import ButtonStyle
-import module.food as food
+#imports
 import random
 
-intents = discord.Intents.default()
-client = discord.Client(intents=intents)
+import discord
+from discord import app_commands
+from discord.ext import commands
+
+from module import chatgpt as gpt
+from module import food
+
+file_path = '/Users/dryoon04/Documents/GitHub/university-project/discord_chatbot/discord_api_token.txt'
+
+# 파일 열기 (읽기 모드로 열기)
+with open(file_path, 'r', encoding='utf-8') as file:
+    # 파일 내용 읽어오기
+    file_content = file.read()
+
+
+#paramètres
+intents = discord.Intents.all()
+client = discord.Client(intents = intents)
+activity = discord.Activity(type = discord.ActivityType.streaming, name="name", url = "twitch_url")
 tree = app_commands.CommandTree(client)
+bot = commands.Bot(intents=intents, command_prefix="!")
+blue = discord.Color.from_rgb(0, 0, 200)
+red = discord.Color.from_rgb(200, 0, 0)
+green = discord.Color.from_rgb(0, 200, 0)
+discord_blue = discord.Color.from_rgb(84, 102, 244)
+
 guild=discord.Object(id=951082793037873212)
 
 @client.event
@@ -41,21 +59,12 @@ async def wow(interaction : discord.Integration):
     embed = discord.Embed(title='😝',description='😝',colour=0x3498DB)
     await interaction.response.send_message(embed = embed)
 
-class SelectMenu(discord.ui.Select):
-    def __init__(self):
-        options = [discord.SelectOption(label="test1",description="test1 설명"),
-                discord.SelectOption(label="test2",description="test2 설명"),
-                discord.SelectOption(label="test3",description="test3 설명"),]
-        super().__init__(placeholder = "Select 메뉴 창 입니다.", options = options)
-
-class Select(discord.ui.View):
-    def __init__(self):
-        super().__init__()
-        self.add_item(SelectMenu())
 
 @tree.command(name='chat', description='만능 명령어를 경험해보세요',guild=guild)
-async def select(interaction: discord.Interaction):
-    await interaction.response.send_message(content="여기는 1번content", view=Select())
+async def chat(interaction: discord.Integration,질문사항 : str):
+    embed = discord.Embed(title = "GPT", description =gpt.chat(질문사항) ,colour=0x3498DB)
+
+    await interaction.response.send_message(embed = embed)
 
     
-client.run('OTYyOTE0MjEwMzIzNTI1NjYy.G1dBk_.WsNAszVjJCcG2wy3Ovlj36gWruOqiPuu5DxFHs')
+client.run(file_content)

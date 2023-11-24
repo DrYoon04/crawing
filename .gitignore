@@ -222,3 +222,5 @@ pyrightconfig.json
 3_vectorstore/lyrics/
 3_vectorstore/open ai api key.txt
 discord_chatbot/gptkey.txt
+discord_chatbot/api key.txt
+discord_chatbot/discord_api_token.txt
