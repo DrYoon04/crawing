@@ -5,8 +5,8 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from module import chatgpt as gpt
-from module import food
+from discord_chatbot.module import chatgpt as gpt
+from discord_chatbot.module import food
 
 file_path = '/Users/dryoon04/Documents/GitHub/university-project/discord_chatbot/discord_api_token.txt'
 
@@ -63,7 +63,6 @@ async def wow(interaction : discord.Integration):
 @tree.command(name='chat', description='만능 명령어를 경험해보세요',guild=guild)
 async def chat(interaction: discord.Integration,질문사항 : str):
     embed = discord.Embed(title = "GPT", description =gpt.chat(질문사항) ,colour=0x3498DB)
-
     await interaction.response.send_message(embed = embed)
 
     

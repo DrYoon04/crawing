@@ -8,7 +8,7 @@ from html_table_parser import parser_functions
 now = datetime.now()
 date = now.strftime("%Y")
 time = str(date)
-
+print("공지사항 로딩중")
 
 url1 = "https://www.kumoh.ac.kr/ko/sub06_01_01_01.do?mode=list&&articleLimit=500&article.offset=0" #학사안내
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"}
@@ -47,11 +47,15 @@ for i in df['제목']:
 
 #title left 클레스 안의 href 가져오기
 title = data.find_all('td', {'class': 'title left'})
+main_url = "https://www.kumoh.ac.kr/ko/sub06_01_01_01.do"
 for i in range(len(title)):
     title[i] = title[i].find('a')
     title[i] = title[i]['href']
+    title[i] = main_url+title[i]
 title = title[count:]
 #link 열 추가 후 title리스트에 있는 href값 넣기
 df['link'] = title
 
 df.to_csv("/Users/dryoon04/Documents/GitHub/university-project/discord_chatbot/data/notice.csv")
+print("공지사항 로딩완료")
+

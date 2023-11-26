@@ -14,13 +14,28 @@ def get_menu_data(user):
     time = now.strftime('%H')
     time = int(time)
 
-    def get_menu(webpage):
+    if user == '푸름':
+        webpage = requests.get("https://dorm.kumoh.ac.kr/dorm/restaurant_menu01.do#")
         soup = BeautifulSoup(webpage.content, "html.parser")
-
         data = soup.find('table', {'class': 'smu-table tb-w150'})
-
         table = parser_functions.make2d(data)
+        df = pd.DataFrame(data=table[1:], columns=table[0])
+        # 각 칼럼 이름에서 숫자만 추출하여 새로운 칼럼 이름으로 설정
+        new_columns = [re.sub("[^0-9]", "", column) for column in df.columns]
+        df.columns = new_columns
+        df.index = ['중식', '석식']
+        for data in df[date]:
+            result.append(data.replace('\n', '\n'))
+        if 14 < time < 19:
+            return result[1]
+        else:
+            return result[0]
 
+    elif user == '오름1':
+        webpage = requests.get("https://dorm.kumoh.ac.kr/dorm/restaurant_menu02.do#")
+        soup = BeautifulSoup(webpage.content, "html.parser")
+        data = soup.find('table', {'class': 'smu-table tb-w150'})
+        table = parser_functions.make2d(data)
         df = pd.DataFrame(data=table[1:], columns=table[0])
 
         # 각 칼럼 이름에서 숫자만 추출하여 새로운 칼럼 이름으로 설정
@@ -35,15 +50,23 @@ def get_menu_data(user):
         else:
             return result[0]
 
-    if user == '푸름':
-        webpage = requests.get("https://dorm.kumoh.ac.kr/dorm/restaurant_menu01.do#")
-        get_menu(webpage)
-    elif user == '오름1':
-        webpage = requests.get("https://dorm.kumoh.ac.kr/dorm/restaurant_menu02.do#")
-        get_menu(webpage)
     elif user == '오름3':
         webpage = requests.get("https://dorm.kumoh.ac.kr/dorm/restaurant_menu03.do#")
-        get_menu(webpage)
+        soup = BeautifulSoup(webpage.content, "html.parser")
+        data = soup.find('table', {'class': 'smu-table tb-w150'})
+        table = parser_functions.make2d(data)
+        df = pd.DataFrame(data=table[1:], columns=table[0])
+        # 각 칼럼 이름에서 숫자만 추출하여 새로운 칼럼 이름으로 설정
+        new_columns = [re.sub("[^0-9]", "", column) for column in df.columns]
+        df.columns = new_columns
+
+        df.index = ['중식', '석식']
+        for data in df[date]:
+            result.append(data.replace('\n', '\n'))
+        if 14 < time < 19:
+            return result[1]
+        else:
+            return result[0]
 
     elif user == '학생식당':
         webpage = requests.get("https://www.kumoh.ac.kr/ko/restaurant01.do")
