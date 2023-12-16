@@ -224,3 +224,4 @@ pyrightconfig.json
 discord_chatbot/gptkey.txt
 discord_chatbot/api key.txt
 discord_chatbot/discord_api_token.txt
+.idea/discord.xml
