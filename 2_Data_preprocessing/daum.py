@@ -1,10 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-from konlpy.tag import Okt
-from collections import Counter
-import matplotlib.pyplot as plt
-from wordcloud import WordCloud
 
 
 url = "https://news.daum.net/"
